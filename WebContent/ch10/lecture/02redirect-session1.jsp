@@ -3,17 +3,10 @@
 
 <% request.setCharacterEncoding("utf-8"); %>
 
-<!DOCTYPE html>
-<html>
-<head>
+<% 
+Calendar c = Calendar.getInstance();
+session.setAttribute("myattr2", c);
 
-<%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
+response.sendRedirect("02redirect-session2.jsp");
 
-<title>Insert title here</title>
-</head>
-<body>
-<div class="container">
-	
-</div>
-</body>
-</html>
+%>
