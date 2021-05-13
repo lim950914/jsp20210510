@@ -13,12 +13,9 @@
 </head>
 <body>
 <div class="container">
-	<h1>session 1</h1>
-	
-	<%
-	request.setAttribute("reqattr1", "reqval1");
-	session.setAttribute("myattr1", "myval1");
-	%>
+	<h1>세션 정보 꺼내기</h1>
+	<p>MEMBERID : <%= session.getAttribute("MEMBERID") %> </p>
+	<p>NAME : <%= session.getAttribute("NAME") %>
 </div>
 </body>
 </html>

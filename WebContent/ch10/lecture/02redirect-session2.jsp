@@ -13,12 +13,7 @@
 </head>
 <body>
 <div class="container">
-	<h1>session 1</h1>
 	
-	<%
-	request.setAttribute("reqattr1", "reqval1");
-	session.setAttribute("myattr1", "myval1");
-	%>
 </div>
 </body>
 </html>

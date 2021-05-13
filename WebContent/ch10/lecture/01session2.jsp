@@ -13,12 +13,18 @@
 </head>
 <body>
 <div class="container">
-	<h1>session 1</h1>
+	<h1>session 2</h1>
 	
 	<%
-	request.setAttribute("reqattr1", "reqval1");
-	session.setAttribute("myattr1", "myval1");
+	Object o = session.getAttribute("myattr1");
+	String s = (String) o;
+	
+	Object a = request.getAttribute("reqattr1");
+	String b = (String) a;
 	%>
+	
+	muattr1 : <%= s %> <br>
+	reqattr1 : <%= b %>
 </div>
 </body>
 </html>
