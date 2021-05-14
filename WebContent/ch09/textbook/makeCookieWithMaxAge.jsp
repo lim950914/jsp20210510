@@ -2,9 +2,11 @@
 <%@ page import="java.util.*" %>
 
 <% request.setCharacterEncoding("utf-8"); %>
+
 <%
-Cookie cookie = new Cookie("my-cookie", "my-value");
-response.addCookie(cookie);
+	Cookie cookie = new Cookie("oneh", "1time");
+	cookie.setMaxAge(60 * 60); // 1시간
+	response.addCookie(cookie);
 %>
 
 <!DOCTYPE html>
@@ -17,7 +19,7 @@ response.addCookie(cookie);
 </head>
 <body>
 <div class="container">
-	<h1>cookie</h1>
+	유효시간이 1시간인 oneh 쿠키 생성
 </div>
 </body>
 </html>

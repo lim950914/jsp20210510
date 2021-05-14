@@ -2,10 +2,6 @@
 <%@ page import="java.util.*" %>
 
 <% request.setCharacterEncoding("utf-8"); %>
-<%
-Cookie cookie = new Cookie("my-cookie", "my-value");
-response.addCookie(cookie);
-%>
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +13,7 @@ response.addCookie(cookie);
 </head>
 <body>
 <div class="container">
-	<h1>cookie</h1>
+	
 </div>
 </body>
 </html>

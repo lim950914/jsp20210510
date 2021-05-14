@@ -1,12 +1,14 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.*" %>
 
-<% request.setCharacterEncoding("utf-8"); %>
-<%
-Cookie cookie = new Cookie("my-cookie", "my-value");
-response.addCookie(cookie);
-%>
 
+<% request.setCharacterEncoding("utf-8"); %>
+
+<%
+	Cookie cookie = new Cookie("name", URLEncoder.encode("최범균", "utf-8"));
+	response.addCookie(cookie);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +19,7 @@ response.addCookie(cookie);
 </head>
 <body>
 <div class="container">
-	<h1>cookie</h1>
+	<%= cookie.getName() %> 쿠키의 값 = "<%= cookie.getValue() %>"
 </div>
 </body>
 </html>

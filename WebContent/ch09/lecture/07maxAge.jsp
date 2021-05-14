@@ -2,8 +2,10 @@
 <%@ page import="java.util.*" %>
 
 <% request.setCharacterEncoding("utf-8"); %>
+
 <%
-Cookie cookie = new Cookie("my-cookie", "my-value");
+Cookie cookie = new Cookie("long-cookie", "long-value");
+cookie.setMaxAge(30 * 60); // 30분
 response.addCookie(cookie);
 %>
 
@@ -17,7 +19,7 @@ response.addCookie(cookie);
 </head>
 <body>
 <div class="container">
-	<h1>cookie</h1>
+	<h1>30분 쿠키</h1>
 </div>
 </body>
 </html>

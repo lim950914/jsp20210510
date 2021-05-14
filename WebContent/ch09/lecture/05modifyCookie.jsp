@@ -3,10 +3,16 @@
 
 <% request.setCharacterEncoding("utf-8"); %>
 <%
-Cookie cookie = new Cookie("my-cookie", "my-value");
-response.addCookie(cookie);
-%>
+Cookie[] cookies = request.getCookies();
 
+for (Cookie c : cookies) {
+	if (c.getName().equals("my-cookie")) {
+		Cookie cookie = new Cookie("my-cookie", "new-value");
+		response.addCookie(cookie);
+	}
+}
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +23,7 @@ response.addCookie(cookie);
 </head>
 <body>
 <div class="container">
-	<h1>cookie</h1>
+	<h1>쿠키 변경</h1>
 </div>
 </body>
 </html>

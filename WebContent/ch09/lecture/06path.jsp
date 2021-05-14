@@ -2,8 +2,10 @@
 <%@ page import="java.util.*" %>
 
 <% request.setCharacterEncoding("utf-8"); %>
+
 <%
-Cookie cookie = new Cookie("my-cookie", "my-value");
+Cookie cookie = new Cookie("my-cookie9", "my-value9");
+cookie.setPath(request.getContextPath());
 response.addCookie(cookie);
 %>
 
@@ -17,7 +19,7 @@ response.addCookie(cookie);
 </head>
 <body>
 <div class="container">
-	<h1>cookie</h1>
+	<h1>cookie path</h1>
 </div>
 </body>
 </html>
