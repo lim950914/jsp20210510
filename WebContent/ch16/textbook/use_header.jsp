@@ -17,18 +17,11 @@
 </head>
 <body>
 <div class="container">
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
- 	 Launch demo modal
-	</button>
+	<tf:header title="텍스트 제목" level="2" />
 	
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
- 	 Launch demo modal
-	</button>
+	<tf:header title="${'EL 제목' }" level="3" />
+	
+	<tf:header title='<%= "표현식 제목" %>' />
 </div>
-
-<my:modal02 id="exampleModal1" keyboard="true" />
-<my:modal02 id="exampleModal2" keyboard="false" />
 </body>
 </html>

@@ -16,19 +16,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container">
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
- 	 Launch demo modal
-	</button>
-	
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
- 	 Launch demo modal
-	</button>
-</div>
 
-<my:modal02 id="exampleModal1" keyboard="true" />
-<my:modal02 id="exampleModal2" keyboard="false" />
+<%
+List<String> list = new ArrayList<>();
+list.add("home");
+list.add("Menu1");
+list.add("Menu2");
+list.add("Menu3");
+pageContext.setAttribute("list", list);
+%>
+
+<my:navbar01 menus="${list }" />
+
+<div class="container">
+	
+</div>
 </body>
 </html>

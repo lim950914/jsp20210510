@@ -17,18 +17,7 @@
 </head>
 <body>
 <div class="container">
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
- 	 Launch demo modal
-	</button>
 	
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
- 	 Launch demo modal
-	</button>
 </div>
-
-<my:modal02 id="exampleModal1" keyboard="true" />
-<my:modal02 id="exampleModal2" keyboard="false" />
 </body>
 </html>
