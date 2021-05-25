@@ -10,29 +10,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servlet12InitParam
+ * Servlet implementation class Servlet13InitParam
  */
-//@WebServlet("/Servlet12InitParam")
-public class Servlet12InitParam extends HttpServlet {
+//@WebServlet("/Servlet13InitParam")
+public class Servlet13InitParam extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet12InitParam() {
+    public Servlet13InitParam() {
         super();
         // TODO Auto-generated constructor stub
     }
 
+    @Override
+    public void init() throws ServletException {
+    	// TODO Auto-generated method stub
+    	super.init();
+    	
+    	ServletConfig config = getServletConfig();
+    	String name = config.getInitParameter("name");
+    	String home = config.getInitParameter("home");
+    	
+    	System.out.println(name);
+    	System.out.println(home);
+    }
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletConfig config = getServletConfig();
-		String url = config.getInitParameter("url");
-		String pw = config.getInitParameter("password");
-		
-		response.getWriter().print(url + ", " + pw);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

@@ -1,8 +1,6 @@
-package ch17.lecture;
+package ch17.textbook;
 
 import java.io.IOException;
-
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servlet12InitParam
+ * Servlet implementation class DBCPInit2
  */
-//@WebServlet("/Servlet12InitParam")
-public class Servlet12InitParam extends HttpServlet {
+@WebServlet("/DBCPInit2")
+public class DBCPInit2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet12InitParam() {
+    public DBCPInit2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,11 +26,8 @@ public class Servlet12InitParam extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletConfig config = getServletConfig();
-		String url = config.getInitParameter("url");
-		String pw = config.getInitParameter("password");
-		
-		response.getWriter().print(url + ", " + pw);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
