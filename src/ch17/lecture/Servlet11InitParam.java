@@ -1,28 +1,27 @@
 package ch17.lecture;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Servlet02
+ * Servlet implementation class Servlet11InitParam
  */
-@WebServlet("/Servlet02")
-public class Servlet02 extends HttpServlet {
+@WebServlet(value = "/Servlet11InitParam",initParams = {@WebInitParam(name = "name", value = "donald"),
+														@WebInitParam(name = "age", value = "99")})
+public class Servlet11InitParam extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet02() {
+    public Servlet11InitParam() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +30,12 @@ public class Servlet02 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("servlet02 doget method....");
-		
-		// jsp 8개 기본객체
-		// request, response
-		// session, application
-		// page, config
-		// out, pageContext
-		
-		/* servlet에서 기본객체 얻기 */
-		// session
-		HttpSession session = request.getSession();
-		ServletContext application = request.getServletContext();
 		ServletConfig config = getServletConfig();
-		PrintWriter out = response.getWriter();
+		String name = config.getInitParameter("name");
+		String age = config.getInitParameter("age");
 		
-		out.print("<h1>");
-		out.print("hello servlet");
-		out.print("</h1>");
+		System.out.println(name);
+		System.out.println(age);
 	}
 
 	/**
