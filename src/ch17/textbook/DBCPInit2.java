@@ -7,35 +7,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import sun.security.action.GetIntegerAction;
+
 /**
  * Servlet implementation class DBCPInit2
  */
-@WebServlet("/DBCPInit2")
+//@WebServlet("/DBCPInit2")
 public class DBCPInit2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DBCPInit2() {
-        super();
-        // TODO Auto-generated constructor stub
+    @Override
+    public void init() throws ServletException {
+//    	loadJDBCDriver();
+//    	initConnectionPool();
+    	String driver = getInitParameter("jdbcdriver");
+    	String url = getInitParameter("jdbcUrl");
+    	String user = getInitParameter("dbUser");
+    	String pw = getInitParameter("dbPass");
+    	String pool = getInitParameter("poolName");
+    	
+    	System.out.println(driver);
+    	System.out.println(url);
+    	System.out.println(user);
+    	System.out.println(pw);
+    	System.out.println(pool);
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+    
 }
