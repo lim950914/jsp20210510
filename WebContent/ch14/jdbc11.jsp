@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="container">
-	${emp.EmployeeID }번 직원은 ${emp.lastName }, ${emp.firstName }입니다. 
+	${emp.id }번 직원은 ${emp.lastName }, ${emp.firstName }입니다. 
 </div>
 </body>
 </html>

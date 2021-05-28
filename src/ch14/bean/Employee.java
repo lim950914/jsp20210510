@@ -1,15 +1,15 @@
 package ch14.bean;
 
 public class Employee {
-	private String EmployeeID;
 	private String lastName;
 	private String firstName;
+	private String id;
 	
-	public String getEmployeeID() {
-		return EmployeeID;
+	public String getId() {
+		return id;
 	}
-	public void setEmployeeID(String employeeID) {
-		this.EmployeeID = employeeID;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getLastName() {
 		return lastName;

@@ -49,7 +49,7 @@ public class JDBC11Servlet extends HttpServlet {
 		
 		Employee emp = null; // 리턴할 객체
 		
-		String sql = "SELECT EmployeeID, LastName, FirstName FROM Employees WHERE EmployeeID = " + eid;
+		String sql = "SELECT * FROM Employees WHERE EmployeeID = " + eid;
 
 		String url = "jdbc:mysql://13.125.223.167/test"; // 본인 ip
 		String user = "root";
@@ -74,12 +74,12 @@ public class JDBC11Servlet extends HttpServlet {
 
 			// 결과 탐색
 			if (rs.next()) {
-				String EmployeeID = rs.getString(1);
+				String id = rs.getString(1);
 				String lastName = rs.getString(2);
 				String firstName = rs.getString(3);
 				
 				emp = new Employee();
-				emp.setEmployeeID(EmployeeID);
+				emp.setId(id);
 				emp.setLastName(lastName);
 				emp.setFirstName(firstName);
 			}
