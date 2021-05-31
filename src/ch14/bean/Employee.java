@@ -4,7 +4,21 @@ public class Employee {
 	private String lastName;
 	private String firstName;
 	private String id;
+	private String notes;
+	private String photo;
 	
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public String getNotes() {
+		return notes;
+	}
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
 	public String getId() {
 		return id;
 	}

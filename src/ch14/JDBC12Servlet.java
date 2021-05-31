@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,18 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import ch14.bean.Employee;
 
-
 /**
- * Servlet implementation class JDBC11Servlet
+ * Servlet implementation class JDBC12Servlet
  */
-@WebServlet("/JDBC11Servlet")
-public class JDBC11Servlet extends HttpServlet {
+@WebServlet("/JDBC12Servlet")
+public class JDBC12Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JDBC11Servlet() {
+    public JDBC12Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,21 +37,20 @@ public class JDBC11Servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String eid = request.getParameter("eid");
-		
-		Employee emp = executeJDBC(eid);
-		
-		request.setAttribute("emp", emp);
+		List<Employee> list = executeJDBC();
 	
-		String path = "/ch14/jdbc11.jsp";
+		request.setAttribute("employees", list);
+		
+		String path = "/ch14/jdbc12.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 	
-	private Employee executeJDBC(String eid) {
+	private List<Employee> executeJDBC() {
+
+		List<Employee> list = new ArrayList<>(); // 리턴할 객체
 		
-		Employee emp = null; // 리턴할 객체
-		
-		String sql = "SELECT EmployeeID, LastName, FirstName FROM Employees WHERE EmployeeID = " + eid;
+		String sql = "SELECT EmployeeID, LastName, FirstName, Notes " + 
+				"FROM Employees ";
 
 		String url = "jdbc:mysql://13.125.223.167/test"; // 본인 ip
 		String user = "root";
@@ -74,22 +74,20 @@ public class JDBC11Servlet extends HttpServlet {
 			rs = stmt.executeQuery(sql);
 
 			// 결과 탐색
-			if (rs.next()) {
-				String id = rs.getString(1);
-				String lastName = rs.getString(2);
-				String firstName = rs.getString(3);
+			while (rs.next()) {
+				Employee employee = new Employee();
+				employee.setId(rs.getString(1));
+				employee.setLastName(rs.getString(2));
+				employee.setFirstName(rs.getString(3));
+				employee.setNotes(rs.getString(4));
 				
-				emp = new Employee();
-				emp.setId(id);
-				emp.setLastName(lastName);
-				emp.setFirstName(firstName);
+				list.add(employee);
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			// 연결 닫기
-			
 			if (rs != null) {
 				try {
 					rs.close();
@@ -118,10 +116,10 @@ public class JDBC11Servlet extends HttpServlet {
 			}
 		}
 
-		return emp;
+		return list;
 
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
