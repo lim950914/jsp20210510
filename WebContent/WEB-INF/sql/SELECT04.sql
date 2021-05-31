@@ -22,8 +22,12 @@ ORDER BY City;
 SELECT CustomerName, City FROM Customers
 WHERE CustomerID = 3;
 
-SELECT EmployeeID, LastName, FirstName FROM Employees;
+SELECT EmployeeID, LastName, FirstName FROM Employees WHERE EmployeeID = 3;
 
+SELECT EmployeeID, LastName, FirstName
+FROM Employees;
+
+SELECT * FROM Employees
 
 
 
