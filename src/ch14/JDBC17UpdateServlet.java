@@ -144,7 +144,7 @@ public class JDBC17UpdateServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-private void updateEmployee(Employee employee) {
+	private void updateEmployee(Employee employee) {
 		
 		String sql = " UPDATE Employees "
 				+ "    SET LastName = ?, "

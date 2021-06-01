@@ -8,20 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ch14.bean.Customer;
-import ch14.dao.CustomersDAO;
+import ch14.bean.Employee;
+import ch14.dao.EmployeesDAO;
+
 
 /**
- * Servlet implementation class JDBC18DeleteServlet
+ * Servlet implementation class JDBC19DeleteServlet
  */
-@WebServlet("/JDBC18DeleteServlet")
-public class JDBC18DeleteServlet extends HttpServlet {
+@WebServlet("/JDBC19DeleteServlet")
+public class JDBC19DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JDBC18DeleteServlet() {
+    public JDBC19DeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +33,14 @@ public class JDBC18DeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		
-		CustomersDAO customersDao = new CustomersDAO();
+		EmployeesDAO employeesDao = new EmployeesDAO();
 	
-		Customer customer = customersDao.getCustomer(Integer.parseInt(id));
-		request.setAttribute("customer", customer);
+		Employee employee = employeesDao.getEmployee(Integer.parseInt(id));
+		request.setAttribute("employee", employee);
 		
-		String path = "/ch14/jdbc18.jsp";
+		String path = "/ch14/jdbc19.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
+		
 	}
 
 	/**
@@ -46,21 +48,11 @@ public class JDBC18DeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
-		CustomersDAO customersDAO = new CustomersDAO();
+		EmployeesDAO employeesDao = new EmployeesDAO();
 		
-		customersDAO.deleteCustomer(Integer.parseInt(id));
+		employeesDao.deleteEmoloyee(Integer.parseInt(id));
 		
 		doGet(request, response);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
