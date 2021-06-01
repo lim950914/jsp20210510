@@ -24,11 +24,10 @@ WHERE CustomerID = 3;
 
 SELECT EmployeeID, LastName, FirstName FROM Employees WHERE EmployeeID = 3;
 
-SELECT EmployeeID, LastName, FirstName
+SELECT EmployeeID, LastName, FirstName, Notes
 FROM Employees;
 
 SELECT * FROM Employees
-
 
 
 
