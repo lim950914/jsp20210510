@@ -1,9 +1,9 @@
 package ch14.bean;
 
 public class Employee {
+	private int id;
 	private String lastName;
 	private String firstName;
-	private String id;
 	private String notes;
 	private String photo;
 	
@@ -19,10 +19,10 @@ public class Employee {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getLastName() {

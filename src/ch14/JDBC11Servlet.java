@@ -80,7 +80,7 @@ public class JDBC11Servlet extends HttpServlet {
 				String firstName = rs.getString(3);
 				
 				emp = new Employee();
-				emp.setId(id);
+				emp.setId(rs.getInt(1));
 				emp.setLastName(lastName);
 				emp.setFirstName(firstName);
 			}

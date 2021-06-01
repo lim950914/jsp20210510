@@ -76,7 +76,7 @@ public class JDBC12Servlet extends HttpServlet {
 			// 결과 탐색
 			while (rs.next()) {
 				Employee employee = new Employee();
-				employee.setId(rs.getString(1));
+				employee.setId(rs.getInt(1));
 				employee.setLastName(rs.getString(2));
 				employee.setFirstName(rs.getString(3));
 				employee.setNotes(rs.getString(4));

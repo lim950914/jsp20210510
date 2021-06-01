@@ -1,5 +1,5 @@
 SELECT * FROM Customers
-WHERE CustomerId = 2;
+WHERE CustomerId = 1;
 
 UPDATE Customers
 SET CustomerName = '스파이더맨';
@@ -36,4 +36,13 @@ SET
  City = 'Oslo'
 ,Country = 'Norway'
 WHERE CustomerID = 32;
+
+SELECT * FROM Employees
+WHERE EmployeeID;
+
+
+
+
+
+
 
