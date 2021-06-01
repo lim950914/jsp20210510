@@ -62,8 +62,6 @@ public class JDBC15InsertServlet extends HttpServlet {
 	
 	private void executeJDBC(Employee employee) {
 
-		List<Employee> list = new ArrayList<>(); // 리턴할 객체
-		
 		String sql = "INSERT INTO Employees " + 
 				"(LastName, FirstName, Photo, Notes) " + 
 				"VALUES " + 
