@@ -49,7 +49,8 @@ public class Sample2LoginServlet extends HttpServlet {
 		if (member != null && member.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userLogined", member);
-			String path = request.getContextPath() + "/sample2/main.jsp";
+			String path = request.getContextPath() + "/sample2/main";
+			response.sendRedirect(path);
 		} else {
 			String path = "/WEB-INF/sample2/login.jsp";
 			request.setAttribute("message", "아이디나 패스워드가 일치하지 않습니다");
