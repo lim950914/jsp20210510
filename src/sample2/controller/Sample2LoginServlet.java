@@ -67,5 +67,3 @@ public class Sample2LoginServlet extends HttpServlet {
 
 
 
-
-
