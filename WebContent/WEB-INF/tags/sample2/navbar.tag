@@ -21,5 +21,3 @@
 	<a href="<%= request.getContextPath() %>/sample2/list">목록보기</a>
 </div>
 
-
-
