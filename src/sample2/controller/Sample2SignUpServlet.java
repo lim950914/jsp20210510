@@ -68,12 +68,3 @@ public class Sample2SignUpServlet extends HttpServlet {
 	}
 
 }
-
-
-
-
-
-
-
-
-
