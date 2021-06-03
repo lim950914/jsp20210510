@@ -24,21 +24,21 @@ public class MemberDao {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean insert(Member member) {
 		String sql = "INSERT INTO Member "
 				+ "(id, password, name, birth, inserted) "
 				+ "VALUES "
-				+ "(?, ?, ?, ?, NOW()) "; 
+				+ "(?, ?, ?, ?, NOW()) ";
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
+
 			con = DriverManager.getConnection(url, user, password);
 			pstmt = con.prepareStatement(sql);
 			
@@ -82,9 +82,9 @@ public class MemberDao {
 				+ "FROM Member";
 		
 		try (
-				Connection con = DriverManager.getConnection(url, user, password);
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);
+			Connection con = DriverManager.getConnection(url, user, password);
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
 				) {
 			
 			while (rs.next()) {
@@ -144,5 +144,76 @@ public class MemberDao {
 		
 		return null;
 	}
+
+	public boolean update(Member member) {
+		String sql = "UPDATE Member "
+				+ "SET password = ?, "
+				+ "    name = ?, "
+				+ "    birth = ? "
+				+ "WHERE id = ? ";
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+
+			con = DriverManager.getConnection(url, user, password);
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, member.getPassword());
+			pstmt.setString(2, member.getName());
+			pstmt.setDate(3, member.getBirth());
+			pstmt.setString(4, member.getId());
+			
+			int cnt = pstmt.executeUpdate();
+			
+			if (cnt > 0) {
+				return true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return false;
+	}
+
+	public void remove(String id) {
+		
+		String sql ="DELETE FROM Member WHERE id = ?";
+		
+		try (
+			Connection con = DriverManager.getConnection(url, user, password);
+			PreparedStatement pstmt = con.prepareStatement(sql);	
+				) {
+			
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
+
+
+
+
+
+
