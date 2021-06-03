@@ -194,12 +194,12 @@ public class MemberDao {
 	}
 
 	public void remove(String id) {
-		
-		String sql ="DELETE FROM Member WHERE id = ?";
+
+		String sql = "DELETE FROM Member WHERE id = ?";
 		
 		try (
 			Connection con = DriverManager.getConnection(url, user, password);
-			PreparedStatement pstmt = con.prepareStatement(sql);	
+			PreparedStatement pstmt = con.prepareStatement(sql);
 				) {
 			
 			pstmt.setString(1, id);
@@ -210,7 +210,44 @@ public class MemberDao {
 		}
 	}
 	
+	public boolean existsId(String id) {
+		String sql = "SELECT id FROM Member WHERE id = ?";
+		
+		ResultSet rs = null;
+		try (
+			Connection con = DriverManager.getConnection(url, user, password);
+			PreparedStatement pstmt = con.prepareStatement(sql);
+				) {
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return false;
+	}
+	
 }
+
+
+
+
+
+
+
 
 
 

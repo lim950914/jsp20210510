@@ -62,9 +62,19 @@ public class Sample2SignUpServlet extends HttpServlet {
 			String path = request.getContextPath() + "/sample2/list";
 			response.sendRedirect(path);
 		} else {
-			String path = "/WEB-INF/smaple2/signup.jsp";
+			request.setAttribute("message", "가입 실패");
+			
+			String path = "/WEB-INF/sample2/signup.jsp";
 			request.getRequestDispatcher(path).forward(request, response);
 		}
 	}
 
 }
+
+
+
+
+
+
+
+
