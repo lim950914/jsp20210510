@@ -14,19 +14,15 @@
 <body>
 <s2:navbar></s2:navbar>
 <div class="container">
-	<h1>로그인</h1>
-	<form method="post" action="${pageContext.request.contextPath }/sample2/login">
-		id <br>
-		<input type="text" name="id"> <br>
-		pw <br>
-		<input type="password" name="password"> <br>
-		<input type="submit" value="로그인">
+	<h1>글 작성</h1>
+	<form action="${pageContext.request.contextPath }/sample2/board/write" method="post" >
+		제목 : <br>
+		<input type="text" name="title" id="input1"> <br>
+		본문 : <br>
+		<textarea name="body" id="textarea1"></textarea> <br>
+		<input type="submit" value="작성" >
 	</form>
-	<c:if test="${not empty message }" >
-		<div>
-			${message }
-		</div>
-	</c:if>
+	
 </div>
 </body>
 </html>

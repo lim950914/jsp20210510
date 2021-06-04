@@ -1,28 +1,28 @@
-package sample2.controller;
+package sample2.controller.member;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import sample2.bean.Member;
 import sample2.dao.MemberDao;
 
 /**
- * Servlet implementation class Sample2RemoveServlet
+ * Servlet implementation class Sample2ModifyServlet
  */
-@WebServlet("/sample2/remove")
-public class Sample2RemoveServlet extends HttpServlet {
+@WebServlet("/sample2/member/modify")
+public class Sample2ModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Sample2RemoveServlet() {
+    public Sample2ModifyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,24 +39,35 @@ public class Sample2RemoveServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("userLogined");
+//		request.setCharacterEncoding("utf-8");
+		
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		String name = request.getParameter("name");
+		String birth = request.getParameter("birth");
+		
+		Member member = new Member();
+		member.setId(id);
+		member.setPassword(password);
+		member.setName(name);
+		member.setBirth(Date.valueOf(birth));
 		
 		MemberDao dao = new MemberDao();
-		dao.remove(member.getId());
+		boolean ok = dao.update(member);
 		
-		session.invalidate();
+		String message = "";
+		if (ok) {
+			message = "변경 완료";
+		} else {
+			message = "변경 실패";
+		}
 		
-		String path = request.getContextPath() + "/sample2/main";
-		response.sendRedirect(path);
+		request.setAttribute("message", message);
+		request.setAttribute("member", member);
+		
+		String path = "/WEB-INF/sample2/member/info.jsp";
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }
-
-
-
-
-
-
-
 

@@ -1,4 +1,4 @@
-package sample2.controller;
+package sample2.controller.member;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,19 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Sample2LogoutServlet
+ * Servlet implementation class Sample2MainServlet
  */
-@WebServlet("/sample2/logout")
-public class Sample2LogoutServlet extends HttpServlet {
+@WebServlet("/sample2/main")
+public class Sample2MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Sample2LogoutServlet() {
+    public Sample2MainServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,12 +26,8 @@ public class Sample2LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		
-		String path = request.getContextPath() + "/sample2/main";
-		response.sendRedirect(path);
-	
+		String path = "/WEB-INF/sample2/main.jsp";
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	/**
@@ -44,4 +39,3 @@ public class Sample2LogoutServlet extends HttpServlet {
 	}
 
 }
-
