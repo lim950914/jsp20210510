@@ -3,10 +3,14 @@ package sample2.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-
-import org.apache.tomcat.dbcp.dbcp2.DriverManagerConnectionFactory;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import sample2.bean.Board;
+import sample2.bean.Member;
 
 public class BoardDao {
 	private String url;
@@ -38,7 +42,7 @@ public class BoardDao {
 			
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getBody());
-			pstmt.setString(3, board.getMemberID());
+			pstmt.setString(3, board.getMemberId());
 			
 			int cnt = pstmt.executeUpdate();
 			if (cnt == 1) {
@@ -51,4 +55,88 @@ public class BoardDao {
 		
 		return false;
 	}
+
+	public List<Board> list() {
+		List<Board> list = new ArrayList<>();
+		
+		String sql = "SELECT id, title, memberId, inserted "
+				+ "FROM Board "
+				+ "ORDER BY id DESC ";
+		
+		try (
+			Connection con = DriverManager.getConnection(url, user, password);
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+					) {
+			
+				while (rs.next()) {
+					Board board = new Board();
+					board.setId(rs.getInt(1));
+					board.setTitle(rs.getString(2));
+					board.setMemberId(rs.getString(3));
+					board.setInserted(rs.getTimestamp(4));
+					
+					list.add(board);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		return list;
+	}
+
+	public Board get(int id) {
+		String sql = "SELECT id, title, body, memberId, inserted "
+				+ "FROM Board "
+				+ "WHERE id = ? ";
+		ResultSet rs = null;
+		try (
+			Connection con = DriverManager.getConnection(url, user, password);
+			PreparedStatement pstmt = con.prepareStatement(sql);
+				
+				) {
+			pstmt.setInt(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				Board board = new Board();
+				board.setId(id);
+				board.setTitle(rs.getString(2));
+				board.setBody(rs.getString(3));
+				board.setMemberId(rs.getString(4));
+				board.setInserted(rs.getTimestamp(5));
+				
+				return board;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return null;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

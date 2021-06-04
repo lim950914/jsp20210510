@@ -1,29 +1,28 @@
 package sample2.controller.board;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import sample2.bean.Board;
-import sample2.bean.Member;
 import sample2.dao.BoardDao;
 
 /**
- * Servlet implementation class Sample2BoardWriteServlet
+ * Servlet implementation class Sample2BoardListServlet
  */
-@WebServlet("/sample2/board/write")
-public class Sample2BoardWriteServlet extends HttpServlet {
+@WebServlet("/sample2/board/list")
+public class Sample2BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Sample2BoardWriteServlet() {
+    public Sample2BoardListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,7 +31,12 @@ public class Sample2BoardWriteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "/WEB-INF/sample2/board/write.jsp";
+		BoardDao dao = new BoardDao();
+		List<Board> boardList = dao.list();
+		
+		request.setAttribute("boards", boardList);
+		
+		String path = "/WEB-INF/sample2/board/list.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
@@ -40,38 +44,8 @@ public class Sample2BoardWriteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("userLogined");
-			
-		String title = request.getParameter("title");
-		String body = request.getParameter("body");
-		
-		Board board = new Board();
-		board.setTitle(title);
-		board.setBody(body);
-		board.setMemberId(member.getId());
-		
-		BoardDao dao = new BoardDao();
-		boolean ok = dao.insert(board);
-		
-		if (ok) {
-			String path = request.getContextPath() + "/sample2/board/list";
-			response.sendRedirect(path);
-		} else {
-			String path = "/WEB-INF/sample2/board/write.jsp";
-			request.getRequestDispatcher(path).forward(request, response);
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
