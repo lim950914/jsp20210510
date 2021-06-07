@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sample2.bean.Board;
+import sample2.bean.BoardDto;
 import sample2.dao.BoardDao;
 
 /**
@@ -34,15 +34,18 @@ public class Sample2BoardDetailServlet extends HttpServlet {
 		
 		if (id == null) {
 			String path = request.getContextPath() + "/sample2/board/list";
+			response.sendRedirect(path);
 		} else {
 			BoardDao dao = new BoardDao();
-			Board board = dao.get(Integer.parseInt(id));
-		
+//			Board board = dao.get(Integer.parseInt(id));
+			BoardDto board = dao.get2(Integer.parseInt(id));
+			
 			request.setAttribute("board", board);
 			
 			String path = "/WEB-INF/sample2/board/detail.jsp";
 			request.getRequestDispatcher(path).forward(request, response);
 		}
+		
 	}
 
 	/**

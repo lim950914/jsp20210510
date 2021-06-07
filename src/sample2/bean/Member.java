@@ -40,5 +40,6 @@ public class Member {
 	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
+	
+	
 }
-

@@ -20,11 +20,10 @@ public class Board {
 		diff /= 1000;
 		
 		if (diff < 60 * 60) {
-			return (diff / 60) + "분 전"; 
+			return (diff / 60) + "분 전";
 		} else if (diff < 60 * 60 * 24) {
 			return (diff / (60 * 60)) + "시간 전";
 		} else {
-			Instant instant = this.inserted.toInstant();
 			return new SimpleDateFormat("yy/MM/dd").format(this.inserted);
 		}
 	}
