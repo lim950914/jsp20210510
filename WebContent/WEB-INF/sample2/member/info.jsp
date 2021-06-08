@@ -50,12 +50,9 @@
 		<input type="submit" id="submit1" value="전송" hidden>
 	</form>
 	
-	<c:if test="${not empty message }">
-		<div>
-			${message }
-		</div>
-	</c:if>
-</div>
+	<s2:message></s2:message>
+	
+</div>	
 
 <div class="container">
 	<form id="form2" action="${pageContext.request.contextPath }/sample2/member/remove" method="post">
