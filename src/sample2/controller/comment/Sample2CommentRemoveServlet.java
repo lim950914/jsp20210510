@@ -17,6 +17,7 @@ public class Sample2CommentRemoveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	private CommentService service;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -25,6 +26,7 @@ public class Sample2CommentRemoveServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
+    @Override
     public void init() throws ServletException {
     	super.init();
     	service = new CommentService();
@@ -48,7 +50,7 @@ public class Sample2CommentRemoveServlet extends HttpServlet {
 		
 		service.remove(id);
 		
-		String path = "/sample2/board/detail?id=" + boardId;
+		String path = request.getContextPath() + "/sample2/board/detail?id=" + boardId;
 		response.sendRedirect(path);
 	}
 
