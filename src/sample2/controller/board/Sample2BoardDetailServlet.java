@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import sample2.bean.BoardDto;
-import sample2.been.Comment;
+import sample2.bean.Comment;
 import sample2.dao.BoardDao;
 import sample2.service.comment.CommentService;
 

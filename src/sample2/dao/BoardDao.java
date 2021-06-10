@@ -1,6 +1,6 @@
 package sample2.dao;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +11,7 @@ import java.util.List;
 
 import sample2.bean.Board;
 import sample2.bean.BoardDto;
+import sample2.bean.Member;
 import sample2.util.DBConnection;
 
 public class BoardDao {
@@ -337,7 +338,38 @@ public class BoardDao {
 			
 		return 0;
 	}
+
+	public int countAll() {
+		String sql = "SELECT COUNT(*) FROM Board";
+		
+		ResultSet rs = null;
+		
+		try (
+			Connection con = DBConnection.getConnection();
+			Statement stmt = con.createStatement();
+				) {
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(rs);
+		}
+		
+		return 0;
+	}
 }
+
+
+
+
+
+
+
+
+
 
 
 

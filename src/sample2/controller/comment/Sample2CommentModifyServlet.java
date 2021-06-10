@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sample2.been.Comment;
+import sample2.bean.Comment;
 import sample2.service.comment.CommentService;
 
 /**

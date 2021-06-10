@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import sample2.been.Comment;
+import sample2.bean.Comment;
 import sample2.util.DBConnection;
 
 public class CommentDao {

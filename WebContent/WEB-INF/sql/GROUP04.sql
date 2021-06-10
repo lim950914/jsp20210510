@@ -34,8 +34,10 @@ WHERE m.id = 'asd';
 SELECT * FROM Member;
 SELECT * FROM Board;
 
-SELECT * FROM Board WHERE memberId = 'asd';
+SELECT COUNT(*) FROM Board;
 SELECT * FROM Comment WHERE memberId = 'asd';
+
+SELECT COUNT(*) FROM Board WHERE memberId = 'asd';
 
 
 

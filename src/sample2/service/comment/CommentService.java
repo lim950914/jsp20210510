@@ -3,7 +3,7 @@ package sample2.service.comment;
 import java.sql.Connection;
 import java.util.List;
 
-import sample2.been.Comment;
+import sample2.bean.Comment;
 import sample2.dao.CommentDao;
 import sample2.util.DBConnection;
 

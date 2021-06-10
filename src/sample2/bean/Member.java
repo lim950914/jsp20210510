@@ -10,6 +10,10 @@ public class Member {
 	private Date birth;
 	private int numberOfBoard;
 	private int numberOfComment;
+	private Timestamp inserted;
+	
+	
+	
 	public int getNumberOfBoard() {
 		return numberOfBoard;
 	}
@@ -19,11 +23,9 @@ public class Member {
 	public int getNumberOfComment() {
 		return numberOfComment;
 	}
-	public void setNumberOfComment(int nemberOfComment) {
-		this.numberOfComment = nemberOfComment;
+	public void setNumberOfComment(int numberOfComment) {
+		this.numberOfComment = numberOfComment;
 	}
-	private Timestamp inserted;
-	
 	public Timestamp getInserted() {
 		return inserted;
 	}
