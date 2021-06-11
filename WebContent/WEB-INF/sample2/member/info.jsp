@@ -36,35 +36,65 @@
 </head>
 <body>
 <s2:navbar></s2:navbar>
-<div class="container">
-	<form id="form1" action="${pageContext.request.contextPath }/sample2/member/modify" method="post">
-		id : <br>
-		<input id="input1" type="text" name="id" value="${member.id }" readonly> <br>
-		pw : <br>
-		<input id="input2" type="password" name="password" value="${member.password }" readonly> <br>
-		name : <br>	
-		<input id="input3" type="text" name="name" value="${member.name }" readonly> <br>
-		birth day: <br>
-		<input id="input4" type="date" name="birth" value="${member.birth }" readonly> <br>
-		<button id="button1" type="button" >수정</button>
-		<input type="submit" id="submit1" value="전송" hidden>
-	</form>
-	
-	<s2:message></s2:message>
-	
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-8">
+			<h1>정보 보기</h1>
+			<form id="form1" action="${pageContext.request.contextPath }/sample2/member/modify" method="post">
+				<div class="form-group">
+					<label for="input1">아이디</label>
+					<div class="input-group mb-3">
+						<input id="input1" type="text" name="id" value="${member.id }" readonly class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="input2">패스워드</label>
+					<input id="input2" type="password" name="password" value="${member.password }" readonly class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="input3">이름</label>
+					<input id="input3" type="text" name="name" value="${member.name }" readonly class="form-control">
+				</div>
+				
+				<div class="form-group">
+					<label for="input4">생일</label>
+					<input id="input4" type="date" name="birth" value="${member.birth }" readonly class="form-control"> 
+				</div>
+				
+		<button id="button1" type="button" class="btn btn-primary">수정</button>
+		<button type="submit" id="submit1" hidden class="btn btn-primary">전송</button>
+	    </form>
+		<form id="form2" action="${pageContext.request.contextPath }/sample2/member/remove" method="post">
+			<button id="submit2" type="submit" class="btn btn-primary">탈퇴</button>
+		</form>
+		</div>
+	</div>
 </div>
-
-<div>
-작성한 게시물 : <span>${member.numberOfBoard }</span>개
-<br>
-작성한 댓글 : <span>${member.numberOfComment }</span>개
-</div>
-
 <div class="container">
-	<form id="form2" action="${pageContext.request.contextPath }/sample2/member/remove" method="post">
-		<input id="submit2" type="submit" value="탈퇴">
-	</form>
+	<div class="row justify-content-center">
+		<div class="col-8">
+			작성한 글 : </i><span>${member.numberOfBoard }</span>개
+			<br>
+			작성한 댓글 : </i><span>${member.numberOfComment }</span>개
+		</div>
+	</div>
+	
+<s2:message></s2:message>
+	
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 

@@ -41,10 +41,7 @@
 		<div class="row justify-content-center">
 			<div class="col-8">
 				<h1>회원 가입</h1>
-				<form
-					action="${pageContext.request.contextPath }/sample2/member/signup"
-					method="post">
-
+				<form action="${pageContext.request.contextPath }/sample2/member/signup" method="post">
 					<div class="form-group">
 						<label for="input1">아이디</label>
 						<div class="input-group mb-3">
@@ -58,8 +55,8 @@
 					</div>
 
 					<div class="form-group">
-						<label for="input2">패스워드</label> <input id="input2"
-							type="password" name="password" class="form-control">
+						<label for="input2">패스워드</label> 
+						<input id="input2" type="password" name="password" class="form-control">
 					</div>
 
 					<div class="form-group">

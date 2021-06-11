@@ -38,8 +38,8 @@
 						<c:if test="${board.numberOfComment != 0 }">
 							
 							<span class="fa-layers fa-fw">
-						    <i class="fas fa-circle"></i>
-						    <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-5">${board.numberOfComment }</span>
+						    <i class="fas fa-comment"></i>
+						    <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-2">${board.numberOfComment }</span>
 						  </span>
 
 						</c:if>
