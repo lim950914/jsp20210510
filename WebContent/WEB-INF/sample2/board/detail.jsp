@@ -15,23 +15,32 @@
 <body>
 <s2:navbar></s2:navbar>
 <div class="container">
+	<div class="row justify-content-center">
+		<div class="col-8">
 	<h1>${board.boardId }번 글 보기</h1>
 	
 	<form id="form1" action="${pageContext.request.contextPath }/sample2/board/modify" method="post">
 	
+	<div class="form-group">
+		<label for="input1">제목</label>
+		<input name="title" id="input1" type="text" value="${board.title }" readonly class="form-control">
+	</div>
 	
-	제목 : <br>
-	<input name="title" id="input1" type="text" value="${board.title }" readonly>
-	<br>
-	본문 : <br>
-	<textarea name="body" id="textarea1" readonly>${board.body }</textarea>
-	<br>
-	작성자 : <br>
-	<input type="text" value="${board.memberName }" readonly>
-	<br>
-	작성시간 : <br>
-	<input type="text" value="${board.timeAgo }" readonly>
-
+	<div class="form-group">
+				<label for="textarea1" >본문</label>
+				<textarea rows="10" name="body" id="textarea1" readonly class="form-control">${board.body }</textarea>
+			</div>
+	
+	<div class="form-group">
+		<label>작성자</label>
+		<input type="text" value="${board.memberName }" readonly class="form-control">
+	</div>
+	
+	<div class="form-group">
+		<label>작성시간</label>
+		<input type="text" value="${board.timeAgo }" readonly class="form-control">
+	</div>
+	
 	<c:if test="${sessionScope.userLogined.id == board.memberId  }" >
 		<script>
 			$(document).ready(function() {
@@ -55,31 +64,38 @@
 	
 		<br>
 		<input type="number" value="${board.boardId }" name="boardId" hidden >
-		<button id="button1" type="button">수정</button>
-		<input id="submit1" hidden type="submit" value="전송" >
-		<input id="submit2" hidden type="submit" value="삭제" >
+		<button id="button1" type="button" class="btn btn-primary">수정</button>
+		<button id="submit1" hidden type="submit" class="btn btn-primary">전송</button>
+		<button id="submit2" hidden type="submit" class="btn btn-primary">삭제</button>
 	</c:if>
 	
 	</form>	
 	
-	<s2:message />
+		<s2:message />
+		</div>
+	</div>
 </div>
 
 <c:if test="${not empty sessionScope.userLogined }">
-<div class="container mt-5">
-	<form action="${pageContext.request.contextPath }/sample2/comment/add" method="post">
-		<textarea name="comment"></textarea>
-		<br>
-		<input hidden name="memberId" value="${sessionScope.userLogined.id }" readonly>
-		<br>
-		<input hidden name="boardId" value="${board.boardId }" readonly>
-		<br>
-		<input type="submit" value="댓글작성">
-	</form>
+<div class="container mt-2">
+	<div class="row justify-content-center">
+		<div class="col-8">
+			<form action="${pageContext.request.contextPath }/sample2/comment/add" method="post">
+				<textarea name="comment"  class="form-control"></textarea>
+				<br>
+				<input hidden name="memberId" value="${sessionScope.userLogined.id }" readonly>
+				<br>
+				<input hidden name="boardId" value="${board.boardId }" readonly>
+				<br>
+				<button type="submit" class="btn btn-primary">댓글작성</button>
+			</form>
+		</div>
+	</div>
 </div>
-
 </c:if>
-<div class="container mt-5">
+<div class="container mt-2">
+	<div class="row justify-content-center">
+		<div class="col-8">
 	<c:forEach items="${comments }" var="comment">
 		<script>
 			$(document).ready(function() {
@@ -93,9 +109,7 @@
 					$form.find("textarea").removeAttr("readonly");
 					$(this).attr("hidden", "hidden");
 					$submitButton.removeAttr("hidden");
-					
 				});
-				
 				$deletButton.click(function(e) {
 					e.preventDefault();
 					
@@ -106,24 +120,23 @@
 				});
 			});
 		</script>
-		<div>
-			<form id="comment${comment.id }Form" 
-				  action="${pageContext.request.contextPath }/sample2/comment/modify"
-				  method="post">
+			<form id="comment${comment.id }Form" action="${pageContext.request.contextPath }/sample2/comment/modify" method="post">
 				<input name="commentId" value="${comment.id }" hidden />
 				<input name="boardId" value="${board.boardId }" hidden />
-				<textarea name="comment" readonly>${comment.comment }</textarea>
-				<span>${comment.memberName }</span>
-				<span>${comment.timeAgo }</span>
-				
-				<c:if test="${sessionScope.userLogined.id == comment.memberId }" >
-					<button id="comment${comment.id }Button1">수정</button>
-					<button id="comment${comment.id }Button3" hidden>전송</button>
-					<button id="comment${comment.id }Button2">삭제</button>
-				</c:if>
+				<textarea name="comment" readonly class="form-control">${comment.comment }</textarea>
+				<div class="container mt-2">
+					<span>${comment.memberName }</span>
+					<span>${comment.timeAgo }</span>
+					<c:if test="${sessionScope.userLogined.id == comment.memberId }" >
+						<button id="comment${comment.id }Button1" class="btn btn-primary">수정</button>
+						<button  id="comment${comment.id }Button3" hidden class="btn btn-primary">전송</button>
+						<button id="comment${comment.id }Button2" class="btn btn-primary" >삭제</button>
+					</c:if>
+				</div>
 			</form>
-		</div>
 	</c:forEach>
+	</div>
+	</div>
 </div>
 </body>
 </html>
